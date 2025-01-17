@@ -72,8 +72,8 @@ jobs:
           'libjpeg-turbo',
           'libpng',
           'luajit',
-          'qtbase[core,opengl,widgets,freetype,harfbuzz,jpeg,png]'
-          'libavif',
+          'qtbase[core,opengl,widgets,freetype,harfbuzz,jpeg,png]',
+          'libavif'
         )
 
         # We treat x86 builds as native, other builds keep host as x64-windows.
