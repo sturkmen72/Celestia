@@ -117,7 +117,8 @@ jobs:
             -DENABLE_MINIAUDIO=ON `
             -DENABLE_LTO=ON       `
             -DUSE_ICU=ON          `
-            -DUSE_WIN_ICU=ON
+            -DUSE_WIN_ICU=ON      `
+            -DENABLE_LIBAVIF=ON
 
     - name: Build
       shell: pwsh
