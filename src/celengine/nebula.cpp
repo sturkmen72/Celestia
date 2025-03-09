@@ -59,7 +59,7 @@ Nebula::getObjType() const
 }
 
 bool
-Nebula::load(const AssociativeArray* params, const fs::path& resPath)
+Nebula::load(const AssociativeArray* params, const fs::path& resPath, std::string_view name)
 {
     if (const std::string* t = params->getString("Mesh"); t != nullptr)
     {
@@ -75,17 +75,17 @@ Nebula::load(const AssociativeArray* params, const fs::path& resPath)
         setGeometry(geometryHandle);
     }
 
-    return DeepSkyObject::load(params, resPath);
+    return DeepSkyObject::load(params, resPath, name);
 }
 
-std::uint64_t
+RenderFlags
 Nebula::getRenderMask() const
 {
-    return Renderer::ShowNebulae;
+    return RenderFlags::ShowNebulae;
 }
 
-unsigned int
+RenderLabels
 Nebula::getLabelMask() const
 {
-    return Renderer::NebulaLabels;
+    return RenderLabels::NebulaLabels;
 }

@@ -12,13 +12,15 @@
 #include <cstdint>
 #include <iosfwd>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
 #include <celcompat/filesystem.h>
-#include <celengine/astroobj.h>
+#include "astroobj.h"
+#include "renderflags.h"
 
 class AssociativeArray;
 class Selection;
@@ -86,10 +88,10 @@ public:
     virtual bool pick(const Eigen::ParametrizedLine<double, 3>& ray,
                       double& distanceToPicker,
                       double& cosAngleToBoundCenter) const;
-    virtual bool load(const AssociativeArray*, const fs::path& resPath);
+    virtual bool load(const AssociativeArray*, const fs::path& resPath, std::string_view name);
 
-    virtual std::uint64_t getRenderMask() const { return 0; }
-    virtual unsigned int getLabelMask() const { return 0; }
+    virtual RenderFlags getRenderMask() const { return RenderFlags::ShowNothing; }
+    virtual RenderLabels getLabelMask() const { return RenderLabels::NoLabels; }
 
     AstroCatalog::IndexNumber getIndex() const { return indexNumber; }
     void setIndex(AstroCatalog::IndexNumber idx) { indexNumber = idx; }

@@ -10,8 +10,14 @@
 
 #pragma once
 
+#include <cstdint>
+#include <string>
+#include <string_view>
+
+#include <celcompat/filesystem.h>
 #include <celutil/reshandle.h>
-#include <celengine/deepskyobj.h>
+#include "deepskyobj.h"
+#include "renderflags.h"
 
 class Nebula : public DeepSkyObject
 {
@@ -23,10 +29,10 @@ public:
     std::string getDescription() const override;
 
     // pick: the preconditional sphere-ray intersection test is enough for now
-    bool load(const AssociativeArray*, const fs::path&) override;
+    bool load(const AssociativeArray*, const fs::path&, std::string_view) override;
 
-    uint64_t getRenderMask() const override;
-    unsigned int getLabelMask() const override;
+    RenderFlags getRenderMask() const override;
+    RenderLabels getLabelMask() const override;
 
     void setGeometry(ResourceHandle);
     ResourceHandle getGeometry() const;

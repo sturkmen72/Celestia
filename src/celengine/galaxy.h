@@ -13,12 +13,14 @@
 #include <cstdint>
 #include <cstddef>
 #include <string>
+#include <string_view>
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
 #include <celcompat/filesystem.h>
 #include "deepskyobj.h"
+#include "renderflags.h"
 
 class AssociativeArray;
 struct Matrices;
@@ -60,15 +62,15 @@ public:
     bool pick(const Eigen::ParametrizedLine<double, 3>& ray,
               double& distanceToPicker,
               double& cosAngleToBoundCenter) const override;
-    bool load(const AssociativeArray*, const fs::path&) override;
+    bool load(const AssociativeArray*, const fs::path&, std::string_view) override;
 
     static void  increaseLightGain();
     static void  decreaseLightGain();
     static float getLightGain();
     static void  setLightGain(float);
 
-    std::uint64_t getRenderMask() const override;
-    unsigned int getLabelMask() const override;
+    RenderFlags getRenderMask() const override;
+    RenderLabels getLabelMask() const override;
 
     DeepSkyObjectType getObjType() const override;
 
